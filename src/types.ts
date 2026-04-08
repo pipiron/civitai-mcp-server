@@ -2,32 +2,16 @@ import { z } from 'zod';
 
 // Enums
 export const NSFWLevel = z.enum(['None', 'Soft', 'Mature', 'X']);
-export const ModelType = z.enum([
-  'Checkpoint',
-  'TextualInversion',
-  'Hypernetwork',
-  'AestheticGradient',
-  'LORA',
-  'LoCon',
-  'DoRA',
-  'Controlnet',
-  'Upscaler',
-  'MotionModule',
-  'VAE',
-  'Poses',
-  'Wildcards',
-  'Workflows',
-  'Other'
-]);
+export const ModelType = z.string(); // 新タイプへの対応のためz.stringに変更
 
 export const ModelMode = z.enum(['Archived', 'TakenDown']).nullable().optional();
 export const SortOrder = z.enum(['Highest Rated', 'Most Downloaded', 'Newest']);  
 export const TimePeriod = z.enum(['AllTime', 'Year', 'Month', 'Week', 'Day']);
 export const ImageSort = z.enum(['Most Reactions', 'Most Comments', 'Newest']);
 export const CommercialUse = z.enum(['None', 'Image', 'Rent', 'Sell']);
-export const FileFormat = z.enum(['SafeTensor', 'PickleTensor', 'Diffusers', 'Core ML', 'ONNX', 'Other']);
+export const FileFormat = z.string(); // 将来の新フォーマットに対応するためz.stringに変更
 export const FileSize = z.enum(['full', 'pruned']);
-export const FloatingPoint = z.enum(['fp16', 'fp32', 'bf16']); // Added bf16
+export const FloatingPoint = z.string().optional(); // fp8等の新精度形式に対応するためz.stringに変更
 
 // Base schemas - API has inconsistent metadata structure
 export const MetadataSchema = z.object({
